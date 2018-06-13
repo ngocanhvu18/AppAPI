@@ -10,16 +10,25 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+        var featureObjcet: [Feature] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        DataService.shared.getDataAPI {[unowned self] (featureData) in
+            self.featureObjcet = featureData
+            self.tableView.reloadData()
+        }
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
 }
 
